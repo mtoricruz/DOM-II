@@ -9,7 +9,18 @@ const get = (selector) => {
 const signUpButton = get('.btn')
 const titleWelcome = get('h1')
 const footerZoom = get('footer');
-const input = get('input')
+const input = get('input.freeCode');
+const password = get('input[type="password"]')
+const newBackgroundColor = get('html')
+const navLinks = get('nav a')
+
+// Stop Nav refresh
+
+function stopNavRefresh(event){
+    event.preventDefault();
+}
+
+navLinks.addEventListener('click', stopNavRefresh)
 
 // Double Click
 function welcomeAlert(event){
@@ -61,13 +72,34 @@ function selectCode(event) {
     const selection = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
     log.textContent = `You have unlocked a secret discount! Call 123-456-7891 for Details. Or else.`;
 }
-
 input.addEventListener('select', selectCode)
 
-// load
 
-window.addEventListener('load', (event) => {
-    console.log('this page is locked and loaded sergent')
+// focus
+
+password.addEventListener('focus', (event) => {
+    event.target.style.background = 'black';
 })
 
-//
+// blur
+
+password.addEventListener('blur', (event) => {
+    event.target.style.background = 'blue'
+})
+
+// mouse down
+
+newBackgroundColor.addEventListener('mousedown', (event) => {
+    event.target.style.background = 'grey';
+    event.stopPropagation();
+    newBackgroundColor.addEventListener('mouseup', (event) => {
+        event.target.style.background = 'white'
+    })
+})
+
+// mouse up
+
+
+
+
+  
