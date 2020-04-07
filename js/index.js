@@ -9,6 +9,7 @@ const get = (selector) => {
 const signUpButton = get('.btn')
 const titleWelcome = get('h1')
 const footerZoom = get('footer');
+const input = get('input')
 
 // Double Click
 function welcomeAlert(event){
@@ -42,9 +43,31 @@ function wheelZoom(event) {
   
     footerZoom.style.transform = `scale(${scale})`;
   }
-  
+
   let scale = 1;
   
   footerZoom.addEventListener('wheel', wheelZoom)
 
+// click
 
+signUpButton.addEventListener('click', event => {
+    signUpButton.innerHTML = `Click count: ${event.detail}`
+})
+
+// select
+
+function selectCode(event) {
+    const log = document.getElementById('log')
+    const selection = event.target.value.substring(event.target.selectionStart, event.target.selectionEnd);
+    log.textContent = `You have unlocked a secret discount! Call 123-456-7891 for Details. Or else.`;
+}
+
+input.addEventListener('select', selectCode)
+
+// load
+
+window.addEventListener('load', (event) => {
+    console.log('this page is locked and loaded sergent')
+})
+
+//
